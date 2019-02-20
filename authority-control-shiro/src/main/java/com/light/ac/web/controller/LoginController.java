@@ -30,7 +30,7 @@ public class LoginController {
     @Autowired
     private PermissionService permissionService;
 
-    @ApiOperation(value = "根据用户名获取用户对象", httpMethod = "GET", response = Map.class, notes = "根据用户名获取用户对象")
+    @ApiOperation(value = "根据用户名获取用户对象", httpMethod = "POST", response = Map.class, notes = "根据用户名获取用户对象")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public Result login(String userName, String password) {
@@ -58,6 +58,12 @@ public class LoginController {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
         return Result.succeed("/index.jsp");
+    }
+
+    @RequestMapping("/test")
+    public String test(HttpSession session) {
+
+        return "600";
     }
 
     @RequestMapping("manageUI")
